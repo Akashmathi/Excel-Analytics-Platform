@@ -9,6 +9,9 @@
     "start": "next start",
     "predeploy": "npm run build",
     "deploy": "gh-pages -d out"
+    
+    "homepage": "https://Akashmathi.github.io/Excel-Analytics-Platform",
+
   },
   "dependencies": {
     "@hookform/resolvers": "^3.9.1",
