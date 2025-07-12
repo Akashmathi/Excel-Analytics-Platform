@@ -1,41 +1,20 @@
-// ✅ app/dashboard/page.tsx
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { RecentAnalysis } from "@/components/recent-analysis"
-import { StatsCards } from "@/components/stats-cards"
-import { QuickActions } from "@/components/quick-actions"
+"use client"
+export const dynamic = "force-dynamic"
 
-export default function DashboardPage() {
+import { useSearchParams } from "next/navigation"
+
+export default function AnalyzePage() {
+  const searchParams = useSearchParams()
+  const file = searchParams.get("file")
+
   return (
-    <div className="space-y-6">
-      <div>
-        <h1 className="text-3xl font-bold tracking-tight">Dashboard</h1>
-        <p className="text-muted-foreground">Welcome back! Here's an overview of your Excel analytics.</p>
-      </div>
-
-      <StatsCards />
-
-      <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-7">
-        <Card className="col-span-4">
-          <CardHeader>
-            <CardTitle>Recent Analysis</CardTitle>
-            <CardDescription>Your latest Excel file analyses and chart generations.</CardDescription>
-          </CardHeader>
-          <CardContent>
-            {/* 🔁 Wrap inside ClientComponent if needed */}
-            <RecentAnalysis />
-          </CardContent>
-        </Card>
-
-        <Card className="col-span-3">
-          <CardHeader>
-            <CardTitle>Quick Actions</CardTitle>
-            <CardDescription>Get started with your data analysis.</CardDescription>
-          </CardHeader>
-          <CardContent>
-            <QuickActions />
-          </CardContent>
-        </Card>
-      </div>
+    <div className="p-6 space-y-4">
+      <h1 className="text-2xl font-bold">Analyzing File</h1>
+      {file ? (
+        <p className="text-muted-foreground">Selected file: <strong>{file}</strong></p>
+      ) : (
+        <p className="text-red-500">No file specified in the URL.</p>
+      )}
     </div>
   )
 }
